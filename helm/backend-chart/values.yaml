@@ -1,0 +1,57 @@
+namespace: dev
+
+replicaCount: 2
+
+image:
+  repository: backend
+  tag: v1
+  pullPolicy: IfNotPresent
+
+app:
+  name: backend
+  port: 5000
+  env: dev
+
+service:
+  name: backend-service
+  type: ClusterIP
+  port: 80
+  targetPort: 5000
+
+ingress:
+  enabled: true
+  className: nginx
+  name: backend-ingress
+  host: backend.local
+  path: /
+  pathType: Prefix
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "256Mi"
+
+probes:
+  readiness:
+    path: /ready
+    initialDelaySeconds: 5
+    periodSeconds: 10
+  liveness:
+    path: /health
+    initialDelaySeconds: 10
+    periodSeconds: 20
+
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  dropCapabilities:
+    - ALL
