@@ -62,3 +62,9 @@ autoscaling:
   maxReplicas: 5
   targetCPUUtilizationPercentage: 50
 
+serviceAccount:
+  create: true
+  name: backend-sa
+
+rbac:
+  create: true
