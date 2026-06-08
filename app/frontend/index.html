@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kubernetes GitOps Frontend</title>
+</head>
+<body>
+  <h1>Frontend is running on Kubernetes</h1>
+  <p>This frontend is served through NGINX Ingress.</p>
+
+  <h2>Backend API Response:</h2>
+  <pre id="backend-response">Loading...</pre>
+
+  <script>
+    fetch("/api/")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("backend-response").textContent =
+          JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        document.getElementById("backend-response").textContent =
+          "Error calling backend: " + error;
+      });
+  </script>
+</body>
+</html>

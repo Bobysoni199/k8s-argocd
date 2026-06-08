@@ -1,0 +1,10 @@
+namespace: prod
+
+replicaCount: 3
+
+app:
+  env: prod
+
+ingress:
+  enabled: true
+  host: frontend-prod.local

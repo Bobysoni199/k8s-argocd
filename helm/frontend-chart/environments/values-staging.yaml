@@ -1,0 +1,10 @@
+namespace: staging
+
+replicaCount: 2
+
+app:
+  env: staging
+
+ingress:
+  enabled: true
+  host: frontend-staging.local

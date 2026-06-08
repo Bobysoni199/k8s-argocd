@@ -1,0 +1,35 @@
+namespace: dev
+
+replicaCount: 2
+
+image:
+  repository: frontend
+  tag: v1
+  pullPolicy: IfNotPresent
+
+app:
+  name: frontend
+  port: 80
+  env: dev
+
+service:
+  name: frontend-service
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  name: frontend-ingress
+  host: frontend.local
+  path: /
+  pathType: Prefix
+
+resources:
+  requests:
+    cpu: "50m"
+    memory: "64Mi"
+  limits:
+    cpu: "300m"
+    memory: "128Mi"

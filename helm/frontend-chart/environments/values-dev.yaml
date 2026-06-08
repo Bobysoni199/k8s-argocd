@@ -1,0 +1,10 @@
+namespace: dev
+
+replicaCount: 2
+
+app:
+  env: dev
+
+ingress:
+  enabled: true
+  host: frontend-dev.local
