@@ -3,8 +3,8 @@ namespace: dev
 replicaCount: 2
 
 image:
-  repository: frontend
-  tag: v1
+  repository: ghcr.io/bobysoni199/k8s-argocd/frontend
+  tag: 15736c8
   pullPolicy: IfNotPresent
 
 app:
